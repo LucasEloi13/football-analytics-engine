@@ -1,0 +1,4 @@
+endpoints:
+  competitions: "/competitions/"
+  teams: "/teams"
+  competition_teams: "/competitions/{id}/teams"
