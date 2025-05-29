@@ -1,4 +1,63 @@
 endpoints:
-  competitions: "/competitions/"
-  teams: "/teams"
-  competition_teams: "/competitions/{id}/teams"
+  competitions:
+    path: /competitions
+    method: GET
+    description: Listar todos os campeonatos disponíveis
+    use_case: Encontrar o ID do Brasileirão (Série A)
+    frequency: initial_setup
+  competition_details:
+    path: /competitions/{id}
+    method: GET
+    description: Informações específicas do Brasileirão
+    required_params:
+    - id
+    data_points:
+    - name
+    - area/name
+    - currentSeason/startDate
+    - currentSeason/endDate
+    - numberOfTeams
+    frequency: seasonal
+  standings:
+    path: /competitions/{id}/standings
+    method: GET
+    description: Tabela de classificação atualizada
+    required_params:
+    - id
+    data_points:
+    - position
+    - points
+    - playedGames
+    - won
+    - draw
+    - lost
+    - goalsFor
+    - goalsAgainst
+    frequency: daily
+  matches:
+    path: /competitions/{id}/matches
+    method: GET
+    description: Todos os jogos do campeonato
+    required_params:
+    - id
+    optional_params:
+      season: YYYY
+      status:
+      - SCHEDULED
+      - FINISHED
+      dateFrom: YYYY-MM-DD
+      dateTo: YYYY-MM-DD
+    frequency: daily
+  teams:
+    path: /competitions/{id}/teams
+    method: GET
+    description: Lista todos os times do Brasileirão
+    required_params:
+    - id
+    data_points:
+    - name
+    - crest
+    - venue
+    - website
+    frequency: seasonal
+brasileirao_id: 2013

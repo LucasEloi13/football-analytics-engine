@@ -1,0 +1,33 @@
+version: 1
+disable_existing_loggers: False
+
+formatters:
+  simple:
+    format: "[%(asctime)s] %(levelname)s %(name)s: %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: simple
+    stream: ext://sys.stdout
+
+  file:
+    class: logging.handlers.RotatingFileHandler
+    level: DEBUG
+    formatter: simple
+    filename: logs/app.log
+    maxBytes: 1048576  # 1MB
+    backupCount: 3
+    encoding: utf8
+
+loggers:
+  futebol_tracker:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+
+root:
+  level: INFO
+  handlers: [console, file]
