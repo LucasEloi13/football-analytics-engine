@@ -14,9 +14,8 @@ setup_logging()
 logger = logging.getLogger("futebol_tracker")
 
 class FootballDataExtractor:
-    def __init__(self, base_url, api_key, config):
+    def __init__(self, api_key, config):
         self.api_key = api_key
-        self.base_url = base_url
         self.config = config
         self.headers = {'X-Auth-Token': api_key}
         logger.info("FootballDataExtractor inicializado.")
@@ -31,7 +30,7 @@ class FootballDataExtractor:
         
         try:
             response = requests.get(
-                f"{self.base_url}{path}",
+                f"{self.config['base_url']}{path}",
                 headers=self.headers
             )
             response.raise_for_status()
@@ -70,7 +69,7 @@ class FootballDataExtractor:
         # Substitui placeholders no path (ex: {id})
         path = path.replace('{id}', str(self.config['brasileirao_id']))
         
-        url = f"{self.base_url}{path}"
+        url = f"{self.config['base_url']}{path}"
 
         # Adiciona parâmetros de query se existirem
         if params:
@@ -104,8 +103,8 @@ class FootballDataExtractor:
         return self._make_request('teams')
     
 
-if __name__ == "__main__":
-    base_url, api_key, config = load_config()
-    extractor = FootballDataExtractor(base_url, api_key, config)
-    extractor.get_competition_details()
+# if __name__ == "__main__":
+#     api_key, config = load_config()
+#     extractor = FootballDataExtractor(api_key, config)
+#     extractor.get_competition_details()
 

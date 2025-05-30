@@ -10,3 +10,21 @@
 [2025-05-29 22:55:12] INFO futebol_tracker: ID do Brasileirão encontrado e salvo: 2013
 [2025-05-29 22:55:12] DEBUG futebol_tracker: Fazendo requisição para URL: https://api.football-data.org/v4/competitions/2013
 [2025-05-29 22:55:13] INFO futebol_tracker: Requisição bem-sucedida para competition_details
+[2025-05-30 16:22:08] INFO futebol_tracker: Conectando ao S3 endpoint: False
+[2025-05-30 16:27:25] INFO futebol_tracker: Conectando ao S3 endpoint: http://localhost:9000
+[2025-05-30 16:27:25] INFO futebol_tracker: Criando bucket: data-lake
+[2025-05-30 16:27:33] ERROR futebol_tracker: Erro ao criar bucket: Could not connect to the endpoint URL: "http://localhost:9000/data-lake"
+[2025-05-30 16:30:38] INFO futebol_tracker: Conectando ao S3 endpoint: http://minio:9000
+[2025-05-30 16:30:38] INFO futebol_tracker: Criando bucket: data-lake
+[2025-05-30 16:30:38] INFO futebol_tracker: Bucket criado com sucesso.
+[2025-05-30 16:41:43] INFO futebol_tracker: FootballDataExtractor inicializado.
+[2025-05-30 17:02:49] INFO futebol_tracker: Iniciando orquestração de extração e upload.
+[2025-05-30 17:02:49] INFO futebol_tracker: Configuração carregada com sucesso.
+[2025-05-30 17:02:49] INFO futebol_tracker: FootballDataExtractor inicializado.
+[2025-05-30 17:02:49] INFO futebol_tracker: Extractor inicializado.
+[2025-05-30 17:02:49] INFO futebol_tracker: Obtendo partidas.
+[2025-05-30 17:02:49] DEBUG futebol_tracker: Fazendo requisição para URL: https://api.football-data.org/v4/competitions/2013/matches
+[2025-05-30 17:02:50] INFO futebol_tracker: Requisição bem-sucedida para matches
+[2025-05-30 17:02:50] INFO futebol_tracker: Dados de partidas extraídos.
+[2025-05-30 17:02:51] INFO futebol_tracker: S3Uploader inicializado para bucket: data-lake
+[2025-05-30 17:02:51] INFO futebol_tracker: Uploader S3 inicializado.
