@@ -28,3 +28,31 @@
 [2025-05-30 17:02:50] INFO futebol_tracker: Dados de partidas extraídos.
 [2025-05-30 17:02:51] INFO futebol_tracker: S3Uploader inicializado para bucket: data-lake
 [2025-05-30 17:02:51] INFO futebol_tracker: Uploader S3 inicializado.
+[2025-05-30 22:13:36] INFO futebol_tracker: Iniciando orquestração de extração e upload.
+[2025-05-30 22:13:36] INFO futebol_tracker: Configuração carregada com sucesso.
+[2025-05-30 22:13:36] INFO futebol_tracker: FootballDataExtractor inicializado.
+[2025-05-30 22:13:36] INFO futebol_tracker: Extractor inicializado.
+[2025-05-30 22:13:36] INFO futebol_tracker: Obtendo partidas.
+[2025-05-30 22:13:36] DEBUG futebol_tracker: Fazendo requisição para URL: https://api.football-data.org/v4/competitions/2013/matches
+[2025-05-30 22:13:38] INFO futebol_tracker: Requisição bem-sucedida para matches
+[2025-05-30 22:13:38] INFO futebol_tracker: Dados de partidas extraídos.
+[2025-05-30 22:13:38] INFO futebol_tracker: S3Uploader inicializado para bucket: data-lake
+[2025-05-30 22:13:38] INFO futebol_tracker: Uploader S3 inicializado.
+[2025-05-30 22:16:20] INFO futebol_tracker: Iniciando orquestração de extração e upload.
+[2025-05-30 22:16:20] INFO futebol_tracker: Configuração carregada com sucesso.
+[2025-05-30 22:16:20] INFO futebol_tracker: S3Uploader inicializado para bucket: data-lake
+[2025-05-30 22:16:20] INFO futebol_tracker: Uploader S3 inicializado.
+[2025-05-30 22:16:20] INFO futebol_tracker: Arquivo JSON enviado com sucesso para data-lake/raw/matches_brasileirao_2025.json
+[2025-05-30 22:16:20] INFO futebol_tracker: Upload realizado para o bucket 'data-lake' com a chave 'raw/matches_brasileirao_2025.json'.
+[2025-05-30 22:19:09] INFO futebol_tracker: Iniciando orquestração de extração e upload.
+[2025-05-30 22:19:09] INFO futebol_tracker: Configuração carregada com sucesso.
+[2025-05-30 22:19:09] INFO futebol_tracker: FootballDataExtractor inicializado.
+[2025-05-30 22:19:09] INFO futebol_tracker: Extractor inicializado.
+[2025-05-30 22:19:09] INFO futebol_tracker: Obtendo partidas.
+[2025-05-30 22:19:09] DEBUG futebol_tracker: Fazendo requisição para URL: https://api.football-data.org/v4/competitions/2013/matches
+[2025-05-30 22:19:11] INFO futebol_tracker: Requisição bem-sucedida para matches
+[2025-05-30 22:19:11] INFO futebol_tracker: Dados de partidas extraídos.
+[2025-05-30 22:19:11] INFO futebol_tracker: S3Uploader inicializado para bucket: data-lake
+[2025-05-30 22:19:11] INFO futebol_tracker: Uploader S3 inicializado.
+[2025-05-30 22:19:11] INFO futebol_tracker: Arquivo JSON enviado com sucesso para data-lake/raw/matches_brasileirao_2025_01.json
+[2025-05-30 22:19:11] INFO futebol_tracker: Upload realizado para o bucket 'data-lake' com a chave 'raw/matches_brasileirao_2025_01.json'.
