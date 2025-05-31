@@ -3,7 +3,8 @@ import json
 
 class BaseTransformer:
     def __init__(self, input_data):
-        self.data = json.load(input_data)  
+        # self.data = json.load(input_data) 
+        self.data = input_data
         self.df = None  
 
     def validate(self):

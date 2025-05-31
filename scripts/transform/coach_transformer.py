@@ -12,6 +12,8 @@ class CoachTransformer(BaseTransformer):
     """
 
     def transform(self):
+        self.logger.info("Iniciando transformação de coaches")
+
         data_list = []
 
         for item in self.data['teams']:

@@ -31,6 +31,19 @@ class S3Uploader:
         except ClientError as e:
             logger.error("Erro ao enviar JSON para o S3: %s", e)
             raise e
+        
+    def upload_parquet(self, parquet_bytes, key):
+        """
+        Envia um arquivo Parquet (em bytes) para o bucket com o prefixo (key) especificado.
+        parquet_bytes: resultado de BytesIO().getvalue()
+        key: caminho/arquivo no bucket (ex: processed/matches/arquivo.parquet)
+        """
+        try:
+            self.s3.put_object(Bucket=self.bucket_name, Key=key, Body=parquet_bytes)
+            logger.info("Arquivo Parquet enviado com sucesso para %s/%s", self.bucket_name, key)
+        except ClientError as e:
+            logger.error("Erro ao enviar Parquet para o S3: %s", e)
+            raise e
     
     def upload_file(self, file_path, key):
         """Envia um arquivo local para o bucket"""

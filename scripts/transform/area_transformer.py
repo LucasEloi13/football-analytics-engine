@@ -18,6 +18,7 @@ class StandingTransformer(BaseTransformer):
 
     """
     def transform(self):
+        self.logger.info("Iniciando transformação de Area")
         data_list = []
 
         area = self.data['area']
