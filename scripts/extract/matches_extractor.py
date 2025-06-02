@@ -1,4 +1,4 @@
-from .base_extractor import BaseExtractor
+from scripts.extract.base_extractor import BaseExtractor
 
 class MatchesExtractor(BaseExtractor):
     def get_matches(self):
