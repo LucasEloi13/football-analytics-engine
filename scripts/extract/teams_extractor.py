@@ -1,4 +1,4 @@
-from .base_extractor import BaseExtractor
+from scripts.extract.base_extractor import BaseExtractor
 
 class TeamsExtractor(BaseExtractor):
     def get_teams(self):
