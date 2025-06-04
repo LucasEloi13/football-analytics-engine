@@ -1,0 +1,88 @@
+# Exemplo de arquivo terraform.tfvars
+# Copie este arquivo para terraform.tfvars e ajuste os valores conforme necessário
+
+# Configurações principais
+project_name = "meu-etl-pipeline"
+environment  = "dev"
+aws_region   = "us-east-1"
+
+# Configurações dos buckets (serão criados com sufixo aleatório)
+raw_data_bucket       = "dados-brutos"
+processed_data_bucket = "dados-processados"
+lambda_code_bucket   = "codigo-lambdas"
+
+# Configurações das Lambdas
+lambda_runtime     = "python3.11"
+lambda_timeout     = 300
+lambda_memory_size = 1024
+
+# Caminhos das layers (ajuste conforme sua estrutura de arquivos)
+python_layer_zip_path      = "layers/python_dependencies.zip"
+etl_utilities_layer_zip_path = "layers/etl_utilities.zip"
+
+# Configurações das Lambdas de Extração
+# Ajuste os caminhos dos ZIPs conforme sua estrutura
+extraction_lambdas = {
+  "extraction_1" = {
+    name        = "api-extraction-1"
+    description = "Lambda para extração de dados da API de usuários"
+    zip_path    = "lambda_packages/extraction_1.zip"
+    handler     = "main.lambda_handler"
+  }
+  "extraction_2" = {
+    name        = "api-extraction-2"
+    description = "Lambda para extração de dados da API de produtos"
+    zip_path    = "lambda_packages/extraction_2.zip"
+    handler     = "main.lambda_handler"
+  }
+  "extraction_3" = {
+    name        = "api-extraction-3"
+    description = "Lambda para extração de dados da API de vendas"
+    zip_path    = "lambda_packages/extraction_3.zip"
+    handler     = "main.lambda_handler"
+  }
+  "extraction_4" = {
+    name        = "api-extraction-4"
+    description = "Lambda para extração de dados da API de analytics"
+    zip_path    = "lambda_packages/extraction_4.zip"
+    handler     = "main.lambda_handler"
+  }
+}
+
+# Configurações das Lambdas de Transformação
+# Ajuste os caminhos dos ZIPs conforme sua estrutura
+transformation_lambdas = {
+  "transformation_1" = {
+    name        = "transform-usuarios"
+    description = "Lambda para transformação de dados de usuários"
+    zip_path    = "lambda_packages/transformation_1.zip"
+    handler     = "main.lambda_handler"
+  }
+  "transformation_2" = {
+    name        = "transform-produtos"
+    description = "Lambda para transformação de dados de produtos"
+    zip_path    = "lambda_packages/transformation_2.zip"
+    handler     = "main.lambda_handler"
+  }
+  "transformation_3" = {
+    name        = "transform-vendas"
+    description = "Lambda para transformação de dados de vendas"
+    zip_path    = "lambda_packages/transformation_3.zip"
+    handler     = "main.lambda_handler"
+  }
+  "transformation_4" = {
+    name        = "transform-analytics"
+    description = "Lambda para transformação de dados de analytics"
+    zip_path    = "lambda_packages/transformation_4.zip"
+    handler     = "main.lambda_handler"
+  }
+}
+
+# Tags comuns (ajuste conforme suas necessidades)
+common_tags = {
+  Project     = "Pipeline ETL de Dados"
+  ManagedBy   = "Terraform"
+  Environment = "dev"
+  Owner       = "time-dados"
+  CostCenter  = "analytics"
+}

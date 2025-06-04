@@ -1,21 +1,21 @@
-variable "aws_region" {
-    description = "The AWS region to deploy resources in"
-    default     = "us-east-2"
-}
-
-variable "bucket" {
-    description = "The name of the S3 bucket to create"
-}
-
-provider "aws" {
-    region = var.aws_region
-}
-
-resource "aws_s3_bucket" "futebol-tracker-bucket" {
-    bucket = var.bucket
-
-    tags = {
-        Name        = "Futebol Tracker Bucket"
-        Environment = "Development"
+# Configuração do Terraform e Provider AWS
+terraform {
+  required_version = ">= 1.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.11"
     }
+  }
 }
+
+# Configuração do Provider AWS
+provider "aws" {
+  region = var.aws_region
+}
+
+# Data source para obter ID da conta AWS atual
+data "aws_caller_identity" "current" {}
+
+# Data source para obter região atual
+data "aws_region" "current" {}
