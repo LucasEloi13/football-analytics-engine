@@ -1,0 +1,5 @@
+{
+  "teste": "upload s3",
+  "data": "2025-06-08T15:00:00Z",
+  "mensagem": "Este é um arquivo de teste para upload no S3 sem consumir requests da API."
+}

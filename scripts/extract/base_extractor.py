@@ -2,12 +2,11 @@ import requests
 import logging
 
 class BaseExtractor:
-    def __init__(self, api_key, config):
-        self.api_key = api_key
+    def __init__(self, config):
+        # self.api_key = api_key
         self.config = config
-        self.headers = {'X-Auth-Token': api_key}
-        self.logger = logging.getLogger("futebol_tracker")
-
+        self.headers = {'X-Auth-Token': self.config['FOOTBALL_DATA_API_KEY']}
+        
     def make_request(self, endpoint_name, **params):
         """
         Método genérico para fazer requisições.
@@ -20,12 +19,12 @@ class BaseExtractor:
             query = '&'.join([f'{k}={v}' for k, v in params.items()])
             url += f'?{query}'
 
-        self.logger.debug("Fazendo requisição para URL: %s", url)
+        logging.debug("Fazendo requisição para URL: %s", url)
         try:
             response = requests.get(url, headers=self.headers)
             response.raise_for_status()
-            self.logger.info("Requisição bem-sucedida para %s", endpoint_name)
+            logging.info("Requisição bem-sucedida para %s", endpoint_name)
             return response.json()
         except Exception as e:
-            self.logger.error("Erro na requisição para %s: %s", endpoint_name, e)
+            logging.error("Erro na requisição para %s: %s", endpoint_name, e)
             return None

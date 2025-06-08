@@ -1,7 +1,17 @@
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import psycopg2
 import boto3
 from botocore.exceptions import NoCredentialsError
 import os
+
+from config.config_loader import load_config
+
+configs = load_config()
+
+
 
 def test_postgres():
     print("Testando conexão com PostgreSQL...")
@@ -25,12 +35,20 @@ def test_postgres():
 def test_minio():
     print("\nTestando conexão com MinIO (S3)...")
     try:
+        # s3 = boto3.client(
+        #     's3',
+        #     endpoint_url='http://minio:9000',
+        #     aws_access_key_id='minioadmin',
+        #     aws_secret_access_key='minioadmin',
+        #     region_name='us-east-1'
+        # )
+
         s3 = boto3.client(
             's3',
-            endpoint_url='http://minio:9000',
-            aws_access_key_id='minioadmin',
-            aws_secret_access_key='minioadmin',
-            region_name='us-east-1'
+            endpoint_url=configs.get('S3_DATALAKE_ENDPOINT_URL'),
+            aws_access_key_id=configs.get('AWS_ACCESS_KEY_ID'),
+            aws_secret_access_key=configs.get('AWS_SECRET_ACCESS_KEY'),
+            region_name='us-east-1'  # Usar 'us-east-1' como padrão
         )
         
         bucket_name = "test-bucket"
