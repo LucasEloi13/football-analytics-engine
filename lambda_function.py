@@ -22,13 +22,13 @@ def lambda_handler(event, context):
         logger.error(f"Erro ao carregar configuração dentro do handler: {e}")
 
     try:
-        import json
-        with open("tests/teste_upload_s3.json", "r") as f:
-            data = json.load(f)
+        # import json
+        # with open("tests/teste_upload_s3.json", "r") as f:
+        #     data = json.load(f)
 
-        # data_extractor = CompetitionDetailsExtractor(config)
-        # data = data_extractor.get_competition_details()
-        # logger.info("Extração de dados realizada com sucesso.")
+        data_extractor = CompetitionDetailsExtractor(config)
+        data = data_extractor.get_competition_details()
+        logger.info("Extração de dados realizada com sucesso.")
     except Exception as e:
         logger.error(f"Erro durante a execução da extração: {e}")
     

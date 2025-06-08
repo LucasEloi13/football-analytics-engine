@@ -33,7 +33,7 @@ def test_postgres():
         print("Erro ao conectar no PostgreSQL:", e)
 
 def test_minio():
-    print("\nTestando conexão com MinIO (S3)...")
+    print("\nTestando conexão com S3...")
     try:
         # s3 = boto3.client(
         #     's3',
