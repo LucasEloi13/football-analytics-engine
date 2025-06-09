@@ -6,3 +6,7 @@ terraform/.terraform*
 *borrao*
 
 meu-projeto-lambda/
+
+venv/
+terraform/layers/python
+*.zip

@@ -8,9 +8,12 @@ docutils==0.19
 gitdb==4.0.12
 GitPython==3.1.41
 idna==3.10
+Jinja2==3.1.6
 jmespath==1.0.1
+MarkupSafe==3.0.2
 numpy==2.2.6
 pandas==2.2.3
+psycopg2==2.9.10
 pyarrow==20.0.0
 pyasn1==0.6.1
 pydotenv==0.0.7
