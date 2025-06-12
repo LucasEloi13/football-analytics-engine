@@ -10,3 +10,7 @@ meu-projeto-lambda/
 venv/
 terraform/layers/python
 *.zip
+
+terraform/layers/aws_dependencies/python
+terraform/layers/data_processing_dependencies/python
+terraform/layers/minimal_dependencies/python
