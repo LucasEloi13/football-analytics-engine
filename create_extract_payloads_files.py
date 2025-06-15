@@ -56,6 +56,7 @@ for context_item in context:
     extractor_file = f"scripts/extract/{context_item['extractor_file_name']}.py"
     shutil.copy2(extractor_file, os.path.join(lambda_dir, "scripts/extract"))
 
+    shutil.copy2("scripts/extract/base_extractor.py", os.path.join(lambda_dir, "scripts/extract"))
     
     shutil.copy2(".env", lambda_dir)
 

@@ -1,43 +1,17 @@
-# resource "aws_lambda_layer_version" "futebol_tracker_lambda_layer" {
-#   filename   = "${path.module}/layers/python.zip"
-#   layer_name = "futebol_tracker_lambda_layer"
-#   compatible_runtimes = ["python3.9", "python3.10", "python3.11"]
-#   source_code_hash = filebase64sha256("${path.module}/layers/python.zip")
-# }
+resource "aws_lambda_layer_version" "minimal_dependencies_layer" {
+    s3_bucket = aws_s3_bucket.football_tracker_datalake.bucket
+    s3_key    = aws_s3_object.minimal_layer_file.key
+    layer_name = "minimal_dependencies_layer"
+    compatible_runtimes = ["python3.11"]
 
-resource "aws_lambda_layer_version" "futebol_tracker_lambda_layer1" {
-  s3_bucket = aws_s3_bucket.football_tracker_datalake.bucket
-  s3_key    = aws_s3_object.layer1-file.key
-  layer_name = "futebol_tracker_lambda_layer1"
-  compatible_runtimes = ["python3.11"]
+    depends_on = [
+        aws_s3_bucket.football_tracker_datalake,
+        aws_s3_object.minimal_layer_file
+    ]
 
-  depends_on = [
-    aws_s3_bucket.football_tracker_datalake,
-    aws_s3_object.layer1-file,
-    aws_iam_role.lambda_role
-  ]
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-resource "aws_lambda_layer_version" "futebol_tracker_lambda_layer2" {
-  s3_bucket = aws_s3_bucket.football_tracker_datalake.bucket
-  s3_key    = aws_s3_object.layer2-file.key
-  layer_name = "futebol_tracker_lambda_layer2"
-  compatible_runtimes = ["python3.11"]
-
-  depends_on = [
-    aws_s3_bucket.football_tracker_datalake,
-    aws_s3_object.layer2-file,
-    aws_iam_role.lambda_role,
-    aws_lambda_layer_version.futebol_tracker_lambda_layer1
-  ]
-
-  lifecycle {
-    create_before_destroy = true
-  }
+    lifecycle {
+        create_before_destroy = true
+    }
 }
 
 resource "aws_lambda_function" "futebol_tracker_extractores_lambda" {
@@ -47,15 +21,18 @@ resource "aws_lambda_function" "futebol_tracker_extractores_lambda" {
   runtime       = "python3.11"
   filename      = "${path.module}/lambdas/extract_competition_details_lambda/payload_files.zip"
   source_code_hash = filebase64sha256("${path.module}/lambdas/extract_competition_details_lambda/payload_files.zip")
-  layers        = [
-    aws_lambda_layer_version.futebol_tracker_lambda_layer1.arn, 
-    aws_lambda_layer_version.futebol_tracker_lambda_layer2.arn
+  
+  # Aumentar timeout e memória
+  timeout = 30  
+  memory_size = 256
+  
+  layers = [
+    aws_lambda_layer_version.minimal_dependencies_layer.arn
   ]
 
   environment {
     variables = {
       BUCKET_NAME = var.bucket_name
-      S3_BUCKET_NAME = var.bucket_name
     }
   }
 
@@ -65,8 +42,7 @@ resource "aws_lambda_function" "futebol_tracker_extractores_lambda" {
     aws_iam_role.lambda_role,
     aws_iam_role_policy_attachment.lambda_policy_attach,
     aws_iam_role_policy_attachment.lambda_cloudwatch_policy_attach,
-    aws_lambda_layer_version.futebol_tracker_lambda_layer1,
-    aws_lambda_layer_version.futebol_tracker_lambda_layer2
+    aws_lambda_layer_version.minimal_dependencies_layer
   ]
 
   lifecycle {
