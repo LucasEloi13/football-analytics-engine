@@ -32,7 +32,7 @@ def lambda_handler(event, context):
         logger.error(f"Erro durante a execução da extração: {e}")
 
     try:
-        s3_bucket_key = gerar_s3_key('raw', 'competition_details', datetime.utcnow())
+        s3_bucket_key = gerar_s3_key('raw', 'competition_details', 'json', datetime.utcnow())
         logger.info(f"Chave S3 gerada: {s3_bucket_key}")
         uploader = S3Uploader(config)
         uploader.upload_json(data, s3_bucket_key)

@@ -5,7 +5,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from scripts.transform.base_transformer import BaseTransformer
 
-class StandingTransformer(BaseTransformer):
+class AreaTransformer(BaseTransformer):
     """
     Input: competition details end point json
 

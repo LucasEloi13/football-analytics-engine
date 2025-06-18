@@ -22,10 +22,6 @@ def lambda_handler(event, context):
         logger.error(f"Erro ao carregar configuração dentro do handler: {e}")
 
     try:
-        # import json
-        # with open("tests/teste_upload_s3.json", "r") as f:
-        #     data = json.load(f)
-
         data_extractor = CompetitionDetailsExtractor(config)
         data = data_extractor.get_competition_details()
         logger.info("Extração de dados realizada com sucesso.")
@@ -40,12 +36,6 @@ def lambda_handler(event, context):
         logger.info("Upload para o S3 realizado com sucesso.")
     except Exception as e:
         logger.error(f"Erro: {e}")
-
-    # try:
-    #     key = gerar_s3_key('raw', 'competition_details', datetime.utcnow())
-    #     print(f"Chave com data explícita: {key}")
-    # except Exception as e:
-    #     print(f"Erro com data explícita: {e}")
 
 if __name__ == "__main__":
     # Executar localmente para testes
